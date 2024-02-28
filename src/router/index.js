@@ -1,21 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ConfigView from '../views/ConfigView.vue'
+import RestartView from '../views/RestartView.vue'
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    caption: 'Home',
+    prependIcon: 'mdi-home',
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
+    path: '/config',
+    name: 'config',
+    component: ConfigView,
+    caption: 'Config',
+    prependIcon: 'mdi-settings-helper',
+  },
+  {
+    path: '/restart',
+    name: 'restart',
+    component: RestartView,
+    caption: 'Restart',
+    prependIcon: 'mdi-reload',
   }
 ]
 

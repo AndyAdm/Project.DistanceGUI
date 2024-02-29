@@ -7,12 +7,13 @@
                     <v-text-field variant="underlined" v-model="serverdata.hostname" label="Hostname"
                         hint="Server host name for the local network"></v-text-field>
 
-                    <v-row> <v-col sm="6"> <v-label>Distance meter options</v-label></v-col> </v-row>
+                    <v-row>
+                        <v-col sm="6"> <v-label>Distance meter options</v-label></v-col>
+                    </v-row>
                     <v-row>
                         <v-col sm="6">
-                            <v-switch v-model="serverdata.distmeter.activated"
-                                :label="serverdata.distmeter.activated ? 'Activated' : 'Deactivated'"
-                                :color="serverdata.distmeter.activated ? 'primary' : 'default'">
+                            <v-switch v-model="serverdata.distmeter.activated" :label="serverdata.distmeter.activated ? 'Activated' : 'Deactivated'
+                                " :color="serverdata.distmeter.activated ? 'primary' : 'default'">
                             </v-switch>
                         </v-col>
                         <v-col sm="6">
@@ -41,14 +42,29 @@
                         </v-col>
                     </v-row>
 
-                    <v-row> <v-col sm="6"> <v-label>Watchdog options</v-label></v-col> <v-col sm="6">
-                            <v-switch v-model="serverdata.watchdog.activated"
-                                :label="serverdata.watchdog.activated ? 'Activated' : 'Deactivated'"
-                                :color="serverdata.watchdog.activated ? 'primary' : 'default'">
-                            </v-switch>
-                        </v-col></v-row>
                     <v-row>
+                        <v-col sm="6"> <v-label>Deep sleep options</v-label></v-col>
+                        <v-col sm="6">
+                            <v-switch v-model="serverdata.sleeper.activated" :label="serverdata.sleeper.activated ? 'Activated' : 'Deactivated'
+                                " :color="serverdata.sleeper.activated ? 'primary' : 'default'">
+                            </v-switch> </v-col></v-row>
+                    <v-row>
+                        <v-col sm="6">
+                            <v-text-field v-model="serverdata.sleeper.gotosleep"
+                                label="Auto sleep after (s)"></v-text-field>
+                        </v-col>
+                        <v-col sm="6">
+                            <v-text-field v-model="serverdata.sleeper.sleeptime"
+                                label="Sleep time (s)"></v-text-field></v-col>
+                    </v-row>
 
+                    <v-row>
+                        <v-col sm="6"> <v-label>Watchdog options</v-label></v-col>
+                        <v-col sm="6">
+                            <v-switch v-model="serverdata.watchdog.activated" :label="serverdata.watchdog.activated ? 'Activated' : 'Deactivated'
+                                " :color="serverdata.watchdog.activated ? 'primary' : 'default'">
+                            </v-switch> </v-col></v-row>
+                    <v-row>
                         <v-col sm="6">
                             <v-text-field v-model="serverdata.watchdog.checkInterval" label="Interval (s)"></v-text-field>
                         </v-col>
@@ -57,16 +73,14 @@
                                 label="Restart after # of attemps"></v-text-field></v-col>
                     </v-row>
 
-
-
-                    <v-row> <v-col sm="6"> <v-label>Mqtt</v-label></v-col> <v-col sm="6">
-                            <v-switch v-model="serverdata.mqtt_server.activated"
-                                :label="serverdata.mqtt_server.activated ? 'Activated' : 'Deactivated'"
-                                :color="serverdata.mqtt_server.activated ? 'primary' : 'default'">
-                            </v-switch>
-                        </v-col></v-row>
                     <v-row>
-
+                        <v-col sm="6"> <v-label>Mqtt</v-label></v-col>
+                        <v-col sm="6">
+                            <v-switch v-model="serverdata.mqtt_server.activated" :label="serverdata.mqtt_server.activated ? 'Activated' : 'Deactivated'
+                                " :color="serverdata.mqtt_server.activated ? 'primary' : 'default'
+        ">
+                            </v-switch> </v-col></v-row>
+                    <v-row>
                         <v-col sm="6">
                             <v-text-field v-model="serverdata.mqtt_server.server" label="Server"></v-text-field></v-col>
 
@@ -80,7 +94,6 @@
                         <v-col sm="4" v-if="serverdata.use_credentials">
                             <v-text-field v-model="serverdata.mqtt_server.username" label="User name"></v-text-field>
                         </v-col>
-
 
                         <v-col sm="6" v-if="serverdata.use_credentials">
                             <v-text-field v-model="serverdata.mqtt_server.password"
@@ -100,19 +113,21 @@
                         <v-col sm="6">
                             <v-btn class="mt-2" text="Reload" block @click="loadConfig()"></v-btn>
                         </v-col>
-                    </v-row>
-
-                </v-sheet></template>
+                    </v-row> </v-sheet></template>
         </v-card>
     </v-form>
 </template>
 
 <script>
 // @ is an alias to /src
-import { isWebSocketConnected, doGetConfig, doSetConfig } from '@/ServerSocket.js';
-import { ServerStatus, ServerData } from '@/ServerData.js';
-import { reactive, ref } from 'vue';
-import _ from 'lodash';
+import {
+    isWebSocketConnected,
+    doGetConfig,
+    doSetConfig,
+} from "@/ServerSocket.js";
+import { ServerStatus, ServerData } from "@/ServerData.js";
+import { reactive, ref } from "vue";
+import _ from "lodash";
 
 export default {
     name: "ConfigView",
@@ -125,11 +140,10 @@ export default {
             serverstatus: ref(ServerStatus),
             isConnected: ref(isWebSocketConnected),
             relaisDefaultStateItems: [
-                { caption: 'Off', value: '0' },
-                { caption: 'On', value: '1' },
-                { caption: 'Last state', value: '2' }
+                { caption: "Off", value: "0" },
+                { caption: "On", value: "1" },
+                { caption: "Last state", value: "2" },
             ],
-
         };
     },
     methods: {
@@ -142,10 +156,10 @@ export default {
         },
         submitForm() {
             this.submitConfig();
-        }
+        },
     },
     beforeMount() {
         doGetConfig();
-    }
+    },
 };
 </script>

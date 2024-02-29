@@ -21,6 +21,22 @@
           </v-row>
 
           <v-row>
+            <v-col md="3">Deep sleep: </v-col>
+            <v-col>
+              <v-icon> {{ serverstatus.sleeper.activated ? 'mdi-checkbox-marked-outline' :
+                'mdi-checkbox-blank-outline' }} </v-icon>
+              <v-label>{{ $filters.formatDate(serverstatus.sleeper.nextasleeptime) }} / {{
+                $filters.formatDate(serverstatus.sleeper.nextawaketime) }}</v-label>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col md="3">Last check </v-col>
+            <v-col>
+              <v-label>{{ $filters.formatDate(serverstatus.distmeter.lastmeasurement) }}</v-label>
+            </v-col>
+          </v-row>
+
+          <v-row>
             <v-col md="3">Uptime: </v-col>
             <v-col>
               <v-label>{{ $filters.calcDuration(serverstatus.uptime) }}</v-label>
@@ -81,8 +97,7 @@
 <script>
 // @ is an alias to /src
 import { doGetStatus, isWebSocketConnected, doRelaisSwitchOff, doRelaisSwitchON, doRelaisSwitchONTemporary } from '@/ServerSocket.js';
-import { ref, onMounted } from 'vue';
-import _ from 'lodash';
+import { ref } from 'vue';
 import { ServerStatus } from '@/ServerData.js';
 
 export default {

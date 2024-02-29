@@ -124,6 +124,25 @@ function doRestart() {
     sendData(sendDataValue);
 }
 
+
+function doResetWifi() {
+    const sendDataValue = {
+        command: 'doResetWifi',
+        data: {},
+    };
+    sendData(sendDataValue);
+}
+
+
+function doResetFactory() {
+    const sendDataValue = {
+        command: 'doResetFactory',
+        data: {},
+    };
+    sendData(sendDataValue);
+}
+
+
 function doGetStatus() {
     const sendDataValue = {
         command: 'doGetStatus',
@@ -172,4 +191,4 @@ function doRelaisSwitchONTemporary(relaisID) {
     sendData(sendDataValue);
 }
 
-export { sendConfig, doDisconnect, doReconnect, doRestart, doRelaisSwitchOff, doRelaisSwitchON, doRelaisSwitchONTemporary, doGetStatus, doGetConfig, doSetConfig };
+export { sendConfig, doDisconnect, doReconnect, doRestart, doRelaisSwitchOff, doRelaisSwitchON, doRelaisSwitchONTemporary, doGetStatus, doGetConfig, doSetConfig, doResetFactory, doResetWifi };

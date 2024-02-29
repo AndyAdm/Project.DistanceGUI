@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ConfigView from '../views/ConfigView.vue'
-import RestartView from '../views/RestartView.vue'
+import SystemView from '../views/SystemView.vue'
 
 
 const routes = [
@@ -22,7 +22,7 @@ const routes = [
   {
     path: '/restart',
     name: 'restart',
-    component: RestartView,
+    component: SystemView,
     caption: 'Restart',
     prependIcon: 'mdi-reload',
   }

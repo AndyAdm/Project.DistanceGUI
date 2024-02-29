@@ -26,6 +26,11 @@ export var ServerData = ref({
         delayEcho: 0,
         triggerPin: 0,
         echoPin: 0,
+    },
+    sleeper: {
+        gotosleep: 0,
+        sleeptime: 0,
+        activated: false,
     }
 
 });
@@ -36,6 +41,18 @@ export var ServerStatus = ref({
     ip: "192.168.50.12",
     hostname: "rslivingroom",
     freeheap: 0,
+    operations: {
+        restart: true,
+        resetWifi: true,
+        resetFactory: true
+    },
+    sleeper: {
+        nextasleep: 0,
+        sleeptime: 0,
+        nextasleeptime: "2023-11-17T13:49:51.141Z",
+        nextawaketime: "2023-11-17T13:49:51.141Z",
+        activated: false,
+    },
     watchdog: {
         lastcheck: "2024-02-10T13:49:51.141Z",
         lastexecuted: "2024-01-05T18:00:51.141Z",
@@ -52,5 +69,7 @@ export var ServerStatus = ref({
         interval: 10,
         lastmeasurement: "2024-02-10T13:49:51.141Z",
 
-    },
+    }
+
 });
+

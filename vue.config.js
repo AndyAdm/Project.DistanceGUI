@@ -15,32 +15,27 @@ module.exports = defineConfig({
       return args;
     });
 
-    // Anpassung der Dateinamen für JavaScript-Dateien
-    config.output.filename('js/app[id].js').chunkFilename('js/cf[id].js');
-    /*     // optimization = {
-        //   usedExports: true
-        // }; */
-    // Anpassung der Dateinamen für CSS-Dateien
-    config.plugin('extract-css').tap(args => {
-      args[0].filename = 'css/app[id].css';
-      args[0].chunkFilename = 'css/cf[id].css';
-      return args;
-    });
+    // // Anpassung der Dateinamen für JavaScript-Dateien
+    // config.output.filename('js/app[id].js').chunkFilename('js/cf[id].js');
+    // /*     // optimization = {
+    //     //   usedExports: true
+    //     // }; */
 
-    // Konfiguration für MiniCssExtractPlugin
-    config.plugin('extract-css').use(MiniCssExtractPlugin, [{
-      filename: 'css/app[id].css',
-      chunkFilename: 'css/cf[id].css',
-    }]);
 
-    config.plugins.delete('prefetch');
-    config.plugin('CompressionPlugin').use(CompressionPlugin, [{
-      test: /\.(js|css|svg|html|json)(\?.*)?$/i,
-      exclude: [/index\.html$/],
-      deleteOriginalAssets: true,
-      algorithm: 'gzip',
-    }]);
-    config.plugins.delete('brotli-compression');
+    // // Konfiguration für MiniCssExtractPlugin
+    // config.plugin('extract-css').use(MiniCssExtractPlugin, [{
+    //   filename: 'css/app[id].css',
+    //   chunkFilename: 'css/cf[id].css',
+    // }]);
+
+    // config.plugins.delete('prefetch');
+    // config.plugin('CompressionPlugin').use(CompressionPlugin, [{
+    //   test: /\.(js|css|svg|html|json)(\?.*)?$/i,
+    //   exclude: [/index\.html$/],
+    //   deleteOriginalAssets: true,
+    //   algorithm: 'gzip',
+    // }]);
+    // config.plugins.delete('brotli-compression');
 
 
   },

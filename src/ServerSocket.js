@@ -27,7 +27,15 @@ function getWebSocketUrl() {
 
 
 //const ws = new WebSocket(process.env.websocketUrl);
-const ws = new WebSocket(getWebSocketUrl());
+let ws = new WebSocket(getWebSocketUrl());
+
+function checkConnection() {
+    if ((!isWebSocketConnected) || (ws.readyState !== WebSocket.OPEN)) {
+        ws = new WebSocket(getWebSocketUrl());
+        //wait(2000); // Warte 3 Sekunden
+
+    }
+}
 
 ws.doConnect = () => {
     console.log('doConnect');
@@ -41,6 +49,7 @@ function doDisconnect() {
 
 function doReconnect() {
     console.log('doReconnect');
+
 };
 
 ws.onopen = () => {
@@ -100,8 +109,10 @@ ws.onmessage = (event) => {
 
 };
 
+
 // Funktion zum Senden von Daten über Websockets
 function sendData(data) {
+    checkConnection();
     ws.send(JSON.stringify(data));
     console.log('sendData() called : ', data.command);
 }

@@ -1,12 +1,19 @@
 <template>
     <v-form @submit.prevent="submitForm">
-        <v-card append-icon="mdi-server" max-width="600">
+        <v-card :append-icon="isConnected ? 'mdi-server' : 'mdi-server-off'" max-width="600">
             <template v-slot:title>Server configuration</template>
             <template v-slot:text>
                 <v-sheet class="mx-auto">
-                    <v-text-field variant="underlined" v-model="serverdata.hostname" label="Hostname"
-                        hint="Server host name for the local network"></v-text-field>
-
+                    <v-row>
+                        <v-col sm="6">
+                            <v-text-field variant="underlined" v-model="serverdata.system.hostname" label="Hostname"
+                                hint="Server host name for the local network"></v-text-field>
+                        </v-col>
+                        <v-col sm="6">
+                            <v-text-field v-model="serverdata.system.timeBeforeIdle"
+                                label="Time before idle (s)"></v-text-field>
+                        </v-col>
+                    </v-row>
                     <v-row>
                         <v-col sm="6"> <v-label>Distance meter options</v-label></v-col>
                     </v-row>
@@ -16,8 +23,12 @@
                                 " :color="serverdata.distmeter.activated ? 'primary' : 'default'">
                             </v-switch>
                         </v-col>
-                        <v-col sm="6">
+                        <v-col sm="3">
                             <v-text-field v-model="serverdata.distmeter.interval" label="Interval (s)"></v-text-field>
+                        </v-col>
+                        <v-col sm="3">
+                            <v-text-field v-model="serverdata.distmeter.canSleepCounter" label="Sleep after #"
+                                :hint="`# of same distances before sleep (0=inactiv)`"></v-text-field>
                         </v-col>
                     </v-row>
 
@@ -104,7 +115,7 @@
                     <v-row>
                         <v-col sm="12">
                             <v-text-field v-model="serverdata.mqtt_server.path_root" label="Root path" :hint="`Path on the MQTT
-                        Server (/${serverdata.hostname}/${serverdata.mqtt_server.path_root})`"></v-text-field>
+                        Server (/${serverdata.system.hostname}/${serverdata.mqtt_server.path_root})`"></v-text-field>
                         </v-col></v-row>
                     <v-row>
                         <v-col sm="6">

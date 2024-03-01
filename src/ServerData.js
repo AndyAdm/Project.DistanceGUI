@@ -1,8 +1,12 @@
 import _ from "lodash";
 import { ref } from "vue";
 
+
 export var ServerData = ref({
-    hostname: "distwater",
+    system: {
+        hostname: "distwater",
+        timeBeforeIdle: 60,
+    },
     watchdog: {
         activated: true,
         checkInterval: 30,
@@ -26,6 +30,7 @@ export var ServerData = ref({
         delayEcho: 0,
         triggerPin: 0,
         echoPin: 0,
+        canSleepCounter: 0,
     },
     sleeper: {
         gotosleep: 0,
@@ -36,16 +41,19 @@ export var ServerData = ref({
 });
 
 export var ServerStatus = ref({
-    uptime: 10,
-    started: "2023-11-17T13:49:51.141Z",
-    ip: "192.168.50.12",
-    hostname: "rslivingroom",
-    freeheap: 0,
-    operations: {
-        restart: true,
-        resetWifi: true,
-        resetFactory: true
+    system: {
+        uptime: 10,
+        started: "2023-11-17T13:49:51.141Z",
+        ip: "192.168.50.12",
+        hostname: "rslivingroom",
+        freeheap: 0,
+        operations: {
+            restart: true,
+            resetWifi: true,
+            resetFactory: true
+        },
     },
+
     sleeper: {
         nextasleep: 0,
         sleeptime: 0,

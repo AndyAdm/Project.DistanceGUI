@@ -2,21 +2,21 @@
   <v-container fill-height fluid>
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="4">
-        <SystemFunction v-if="serverstatus.operations.restart" title="Restart"
+        <SystemFunction v-if="serverstatus.system.operations.restart" title="Restart"
           description=" You will restart the device.  Are you sure ?" buttonText="Restart" icon_button="mdi-restart"
           :onClick="onClickRestart" />
       </v-col>
     </v-row>
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="4">
-        <SystemFunction v-if="serverstatus.operations.resetWifi" title="Reset Wifi"
+        <SystemFunction v-if="serverstatus.system.operations.resetWifi" title="Reset Wifi"
           description=" You will erase the WiFi configuration and restart the device.  Are you sure ?"
           buttonText="Reset WiFi" icon_button="mdi-access-point-off" :onClick="onClickResetWifi" />
       </v-col>
     </v-row>
     <v-row justify="center" align="center">
       <v-col cols="12" sm="8" md="4">
-        <SystemFunction v-if="serverstatus.operations.resetFactory" title="Reset to Factory defaults"
+        <SystemFunction v-if="serverstatus.system.operations.resetFactory" title="Reset to Factory defaults"
           description=" You will reset the device to factory defaults and restart the device.  Are you sure ?"
           buttonText="FULL RESET" icon_button="mdi-delete-sweep" :onClick="dialogResetFactory" />
       </v-col>

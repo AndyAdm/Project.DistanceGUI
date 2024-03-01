@@ -4,7 +4,7 @@
   <v-container :disabled="!isConnected">
     <v-card max-width="600" :append-icon="isConnected ? 'mdi-server' : 'mdi-server-off'">
       <template v-slot:title> Server overview </template>
-      <template v-slot:subtitle> {{ serverstatus.ip }} Hostname: {{ serverstatus.hostname }} </template>
+      <template v-slot:subtitle> {{ serverstatus.system.ip }} Hostname: {{ serverstatus.system.hostname }} </template>
       <template v-slot:text>
         <v-container class="grey lighten-5">
           <v-row>
@@ -39,13 +39,13 @@
           <v-row>
             <v-col md="3">Uptime: </v-col>
             <v-col>
-              <v-label>{{ $filters.calcDuration(serverstatus.uptime) }}</v-label>
+              <v-label>{{ $filters.calcDuration(serverstatus.system.uptime) }}</v-label>
             </v-col>
           </v-row>
           <v-row>
             <v-col md="3">Started: </v-col>
             <v-col>
-              <v-label>{{ $filters.formatDate(serverstatus.started) }}</v-label>
+              <v-label>{{ $filters.formatDate(serverstatus.system.started) }}</v-label>
             </v-col>
           </v-row>
           <v-row>
@@ -84,8 +84,7 @@
       </v-card-actions>
 
       <v-label class="text-body-1"> FreeMem: {{
-        serverstatus.freeheap }}</v-label>
-
+        serverstatus.system.freeheap }}</v-label>
     </v-card>
 
 

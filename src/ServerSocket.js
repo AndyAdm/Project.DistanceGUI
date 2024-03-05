@@ -29,10 +29,36 @@ function getWebSocketUrl() {
 //const ws = new WebSocket(process.env.websocketUrl);
 let ws = new WebSocket(getWebSocketUrl());
 
+function waitForWebSocketOpen(callback, timeout) {
+    var startTime = Date.now();
+
+    function check() {
+        if (ws.readyState === WebSocket.OPEN) {
+            callback(true);
+        } else if (Date.now() - startTime >= timeout) {
+            callback(false);
+        } else {
+            setTimeout(check, 100); // Überprüfen Sie alle 100 ms erneut
+        }
+    }
+
+    check();
+}
+
+
 function checkConnection() {
     if ((!isWebSocketConnected) || (ws.readyState !== WebSocket.OPEN)) {
         ws = new WebSocket(getWebSocketUrl());
-        //wait(2000); // Warte 3 Sekunden
+
+        waitForWebSocketOpen(function (isOpen) {
+            if (!isOpen) {
+                // WebSocket wurde nach 2 Sekunden nicht geöffnet
+                console.log("WebSocket konnte nicht geöffnet werden.");
+            } else {
+                // WebSocket ist geöffnet
+                console.log("WebSocket ist jetzt geöffnet.");
+            }
+        }, 2000); // Timeout von 2 Sekunden
 
     }
 }

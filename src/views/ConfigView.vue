@@ -99,14 +99,16 @@
                             <v-text-field v-model="serverdata.mqtt_server.port" label="Port"></v-text-field></v-col>
                     </v-row>
                     <v-row>
-                        <v-col sm="2">
-                            <v-checkbox v-model="serverdata.use_credentials" label="Auth"></v-checkbox>
-                        </v-col>
-                        <v-col sm="4" v-if="serverdata.use_credentials">
+
+                        <v-col sm="3">
+                            <v-switch v-model="serverdata.mqtt_server.use_credentials" label="Auth" :color="serverdata.mqtt_server.use_credentials ? 'primary' : 'default' ">
+                        
+                            </v-switch>     </v-col>
+                        <v-col sm="3" v-if="serverdata.mqtt_server.use_credentials">
                             <v-text-field v-model="serverdata.mqtt_server.username" label="User name"></v-text-field>
                         </v-col>
 
-                        <v-col sm="6" v-if="serverdata.use_credentials">
+                        <v-col sm="6" v-if="serverdata.mqtt_server.use_credentials">
                             <v-text-field v-model="serverdata.mqtt_server.password"
                                 :type="password_show ? 'text' : 'password'" label="Password"
                                 :append-icon="password_show ? 'mdi-eye' : 'mdi-eye-off'"

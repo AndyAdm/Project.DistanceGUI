@@ -45,6 +45,7 @@ export var ServerStatus = ref({
         uptime: 10,
         started: "2023-11-17T13:49:51.141Z",
         ip: "192.168.50.12",
+        wifi_rssi: 5,
         hostname: "rslivingroom",
         freeheap: 0,
         operations: {

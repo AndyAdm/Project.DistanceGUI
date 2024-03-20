@@ -84,7 +84,8 @@
       </v-card-actions>
 
       <v-label class="text-body-1"> FreeMem: {{
-        serverstatus.system.freeheap }}</v-label>
+    serverstatus.system.freeheap }} WiFi RSSI: {{
+    serverstatus.system.wifi_rssi }}</v-label>
     </v-card>
 
   </v-container>
